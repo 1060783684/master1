@@ -26,30 +26,40 @@ public class PingPongTask implements Runnable {
         lable:
         while (j <= 2) {//可能断开连接
             Socket socket = map.get(id);
-            try {
-                socket.setSoTimeout(300);
-                Writer out = new OutputStreamWriter(socket.getOutputStream());
-                Reader in = new InputStreamReader(socket.getInputStream());
-                StreamHandler.streamWrite(out,"0110|pin");
-                int i = 0;
-                while (i <= 2) {
-                    String data = StreamHandler.streamRead(in);//可能连接超时
-                    String[] datas = data.split("\\|");
-                    if (datas[0].equals("0110") && datas[1].equals("pon")) {
-                        socket.setSoTimeout(0);
-                        System.out.println("状态：存活");
-                        break lable;
+            if (socket != null) {
+                try {
+                    socket.setSoTimeout(300);
+                    Writer out = new OutputStreamWriter(socket.getOutputStream());
+                    Reader in = new InputStreamReader(socket.getInputStream());
+                    StreamHandler.streamWrite(out, "0110|pin");
+                    int i = 0;
+                    while (i <= 2) {
+                        String data = StreamHandler.streamRead(in);//可能连接超时
+                        String[] datas = data.split("\\|");
+                        if (datas[0].equals("0110") && datas[1].equals("pon")) {
+                            socket.setSoTimeout(0);
+                            System.out.println("状态：存活");
+                            break lable;
+                        }
+                        i++;
                     }
-                    i++;
+                } catch (IOException e) {
+                    j++;
+                    this.map.put(id, null);
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                    e.printStackTrace();
                 }
-            }catch (IOException e) {
+            }else {
                 j++;
                 try {
                     Thread.sleep(300);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                e.printStackTrace();
             }
         }
     }

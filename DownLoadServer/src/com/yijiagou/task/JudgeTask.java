@@ -83,29 +83,40 @@ public class JudgeTask implements Runnable {
                 String type = infos[4];//家电类型
                 String aid = infos[5];//appID
                 data = "0000|ok\n";
+                String path = type+"/"+aid+".py";
+                int pathLen = path.length();
                 Socket hsocket = this.map.get(id);
                 Writer write = null;
                 Reader read = null;
                 try {
                     if (hsocket != null) {
                         int count = 0;
+                        write = new OutputStreamWriter(hsocket.getOutputStream());
+                        read = new InputStreamReader(hsocket.getInputStream());
                         while (count < 3) {
-                            boolean succe = StreamHandler.streamWrite(write, "0111|lod");
+                            boolean succe = StreamHandler.streamWrite(write, "0111|lod"+"|"+pathLen+"|"+path);
                             if (!succe) {//发送消息时断开连接,重新获取socket
                                 count++;
                                 Thread.sleep(200);
-                                continue;
+                                continue;//产生错误就不向下执行
                             }
-                            String result = StreamHandler.streamRead(in);
-                            if (result != null) {
-                                String[] info = result.split("\\|");
-                                if (info[0].equals("0111") && info[1].equals("ok")) {
-                                    boolean succe0 = StreamHandler.streamWrite(out, data);
-                                    if (!succe0) {
-                                        sessionMap.put(sessionId, data);
+
+                            int count0 = 0;
+                            while (count0 < 3){
+                                String result = StreamHandler.streamRead(read);//
+                                if (result != null) {
+                                    String[] info = result.split("\\|");
+                                    if (info[0].equals("0111") && info[1].equals("ok")) {
+                                        boolean succe0 = StreamHandler.streamWrite(out, data);
+                                        if (!succe0) {
+                                            sessionMap.put(sessionId, data);
+                                        }
+                                        return;//成功则返回
+                                    } else if (info[0].equals("0111") && info[1].equals("err")) {
+                                        StreamHandler.streamWrite(write, "0111|lod" + "|" + pathLen + "|" + path);
                                     }
-                                    return;
                                 }
+                                count0++;
                             }
                             break;
                         }
