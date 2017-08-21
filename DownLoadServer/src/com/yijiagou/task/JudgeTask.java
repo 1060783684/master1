@@ -1,7 +1,6 @@
 package com.yijiagou.task;
 
-import com.yijiagou.pojo.DChannel;
-import com.yijiagou.pojo.Event;
+import com.yijiagou.tools.StreamHandler;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,95 +16,119 @@ public class JudgeTask implements Runnable {
     private Socket socket;
     private ExecutorService workerpool;
     private ScheduledExecutorService timepool;
-    private Map<String, DChannel> map;
+    private Map<String, Socket> map;
+    private Map<String, String> sessionMap;
 
     public JudgeTask(Socket socket, ExecutorService workerpool,
-                     ScheduledExecutorService timepool, Map<String, DChannel> map) {
+                     ScheduledExecutorService timepool, Map<String, Socket> map, Map<String, String> sessionMap) {
         this.socket = socket;
         this.workerpool = workerpool;
         this.timepool = timepool;
         this.map = map;
+        this.sessionMap = sessionMap;
     }
 
     public void homeDispose(String id, Socket socket) {
         //记录登录的冰箱
-        DChannel dChannel = new DChannel(socket, true);
-        this.map.put(id, dChannel);
-        timepool.scheduleAtFixedRate(new PingPongTask(id,this.map), 1, 1, TimeUnit.MINUTES);
+        this.map.put(id, socket);
+        timepool.scheduleAtFixedRate(new PingPongTask(id, this.map), 1, 1, TimeUnit.MINUTES);
 //        timepool.scheduleAtFixedRate(new PingPongTask(id,this.map), 1, 5, TimeUnit.MINUTES);
     }
 
     @Override
     public void run() {
-        BufferedReader in = null;
-        BufferedWriter out = null;
+        Writer out = null;
+        Reader in = null;
         try {
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-            String conninfo = in.readLine();
-
-            System.out.println(conninfo);
-            String[] infos = conninfo.split("\\|");
-            System.out.println(infos[0]);
-            System.out.println(infos[1]);
-            String req = "1111|ok\n";
-            if (infos[0].equals("1111")) {//与家电的链接
+            out = new OutputStreamWriter(socket.getOutputStream());
+            in = new InputStreamReader(socket.getInputStream());
+            String conninfo = StreamHandler.streamRead(in);//第一次收到的数据
+            String[] infos = conninfo.split("\\|");//将数据拆分用于判断
+            if (infos[0].equals("1111")) {//与家电的链接,与家电建立长链接
+                String req = "1111|ok\n";//返回的消息
                 if (infos[1] == null) {
                     req = "1111|err\n";
-                }
-                homeDispose(infos[1], socket);
-                out.write(req);
-                out.flush();
-            } else if (infos[0].equals("0000")) {//与netty的链接
-                //发送成功消息并启动监听队列线程
-                String id = infos[1];
-                String type = infos[2];
-                String aid = infos[3];
-                Event event = null;
-                DChannel dChannel = null;
-//                BufferedWriter bw = null;
-                try {
-//                    bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    event = new Event("/opt/smdata/code/"+type+"/"+aid+".py");
-//                    System.out.println(event.getInfo());
-                    dChannel = map.get(id);
-
-                    dChannel.getLock().lock();
-                    boolean b = dChannel.isStatus();//可能出错
-                    dChannel.getLock().unlock();
-
-                    String data = "";
-                    if (b) {
-                        data = "true\n";
-                    } else {
-                        data = "false\n";
+                } else {
+                    int number = Integer.parseInt(infos[1]);
+                    if (infos[2].getBytes().length != number) {
+                        req = "1111|err";
                     }
-                    out.write(data);
-                    System.out.print(data);
-                    out.flush();
-                } catch (IOException e) {
+                }
+                boolean succe = StreamHandler.streamWrite(out, req);
+
+                //-------------判断家电连接是否成功---------------
+                if (succe) {
+                    homeDispose(infos[2], socket);
+                } else {
+                    homeDispose(infos[2], null);
+                }
+                //-------------判断家电连接是否成功---------------
+
+            } else if (infos[0].equals("0000")) {//与netty的链接,给家电发送下载命令
+                String sessionId = infos[1];
+                String data = sessionMap.get(sessionId);
+
+                //-------------判断是不是上一个netty会话没有发出去的消息-------------
+                if (data != null) {
+                    boolean succe = StreamHandler.streamWrite(out, data);
+                    if (succe) {
+                        sessionMap.remove(sessionId);
+                        return;
+                    }
+                }
+                //-------------判断是不是上一个netty会话没有发出去的消息-------------
+
+                int number = Integer.parseInt(infos[2]);
+                String id = infos[3];//家电ID
+                String type = infos[4];//家电类型
+                String aid = infos[5];//appID
+                data = "0000|ok\n";
+                Socket hsocket = this.map.get(id);
+                Writer write = null;
+                Reader read = null;
+                try {
+                    if (hsocket != null) {
+                        int count = 0;
+                        while (count < 3) {
+                            boolean succe = StreamHandler.streamWrite(write, "0111|lod");
+                            if (!succe) {//发送消息时断开连接,重新获取socket
+                                count++;
+                                Thread.sleep(200);
+                                continue;
+                            }
+                            String result = StreamHandler.streamRead(in);
+                            if (result != null) {
+                                String[] info = result.split("\\|");
+                                if (info[0].equals("0111") && info[1].equals("ok")) {
+                                    boolean succe0 = StreamHandler.streamWrite(out, data);
+                                    if (!succe0) {
+                                        sessionMap.put(sessionId, data);
+                                    }
+                                    return;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    data = "0000|err\n";
+                    boolean succe0 = StreamHandler.streamWrite(out, data);
+                    if (!succe0) {
+                        sessionMap.put(sessionId, data);
+                    }
+                } catch (InterruptedException e) {
+                    //thread sleep出错
                     e.printStackTrace();
-                    //记录错误 远程io 中断 netty服务器
                 }finally {
-                    out.close();
+                    StreamHandler.closeReader(in);
+                    StreamHandler.closeWriter(out);
                 }
-
-                dChannel.addEvent(event);
-
-                dChannel.getLock1().lock();
-                if (!dChannel.isListen()) {
-                    this.workerpool.execute(new DownLoadTask(dChannel));
-                }
-                dChannel.getLock1().unlock();
-
             } else {
                 out.write("1001|err\n");
                 out.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
-            //记录错误 远程io 中断 未知
         }
+
     }
 }

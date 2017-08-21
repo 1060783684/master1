@@ -1,8 +1,9 @@
 package com.yijiagou.task;
 
-import com.yijiagou.pojo.DChannel;
+import com.yijiagou.tools.StreamHandler;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 import java.net.SocketException;
 import java.util.Map;
 
@@ -12,9 +13,9 @@ import java.util.Map;
 public class PingPongTask implements Runnable {
 
     private String id;
-    private Map<String,DChannel> map;
+    private Map<String,Socket> map;
 
-    public PingPongTask(String id,Map<String,DChannel> map) {
+    public PingPongTask(String id,Map<String,Socket> map) {
         this.id = id;
         this.map = map;
     }
@@ -22,42 +23,33 @@ public class PingPongTask implements Runnable {
     @Override
     public void run() {
         int j = 0;
-        DChannel dChannel = map.get(id);
         lable:
-        while (j <= 2) {
+        while (j <= 2) {//可能断开连接
+            Socket socket = map.get(id);
             try {
-                dChannel.writeAndFlush("0110|pin");
-                dChannel.soTimeout(10000);
+                socket.setSoTimeout(300);
+                Writer out = new OutputStreamWriter(socket.getOutputStream());
+                Reader in = new InputStreamReader(socket.getInputStream());
+                StreamHandler.streamWrite(out,"0110|pin");
                 int i = 0;
                 while (i <= 2) {
-                    String data = dChannel.readline();
-                    System.out.println(data);
+                    String data = StreamHandler.streamRead(in);//可能连接超时
                     String[] datas = data.split("\\|");
                     if (datas[0].equals("0110") && datas[1].equals("pon")) {
-                        if (!dChannel.isStatus()) {
-                            dChannel.setStatus(true);
-                        }
-                        dChannel.soTimeout(0);
+                        socket.setSoTimeout(0);
                         System.out.println("状态：存活");
                         break lable;
                     }
                     i++;
                 }
-            } catch (SocketException e) {
-                //记录错误冰箱断连
+            }catch (IOException e) {
+                j++;
                 try {
-                    dChannel.writeAndFlush("0110|pin");
-                    j++;
-                } catch (IOException e1) {
-                    dChannel.setStatus(false);
-                    j++;
-                    System.out.println("远程io 中断 家电");
-
-                    //记录错误 远程io 中断 冰箱
+                    Thread.sleep(300);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
-            } catch (IOException e) {
                 e.printStackTrace();
-                //记录错误 远程io 中断 冰箱
             }
         }
     }
