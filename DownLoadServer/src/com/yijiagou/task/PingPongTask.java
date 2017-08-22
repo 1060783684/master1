@@ -28,7 +28,7 @@ public class PingPongTask implements Runnable {
             Socket socket = map.get(id);
             if (socket != null) {
                 try {
-                    socket.setSoTimeout(300);
+                    socket.setSoTimeout(1000);
                     Writer out = new OutputStreamWriter(socket.getOutputStream());
                     Reader in = new InputStreamReader(socket.getInputStream());
                     StreamHandler.streamWrite(out, "0110|pin");
@@ -38,7 +38,7 @@ public class PingPongTask implements Runnable {
                         String[] datas = data.split("\\|");
                         if (datas[0].equals("0110") && datas[1].equals("pon")) {
                             socket.setSoTimeout(0);
-                            System.out.println("状态：存活");
+                            System.out.println(id+"状态：存活");
                             break lable;
                         }
                         i++;
@@ -46,6 +46,7 @@ public class PingPongTask implements Runnable {
                 } catch (IOException e) {
                     j++;
                     this.map.put(id, null);
+                    System.out.println(id+"状态：断开");
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e1) {

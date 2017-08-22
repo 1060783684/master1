@@ -7,9 +7,11 @@ import java.io.*;
  */
 public class StreamHandler {
     public static boolean streamWrite(Writer writer,String data){
+        BufferedWriter bw = null;
         try {
-            writer.write(data);
-            writer.flush();
+            bw = new BufferedWriter(writer);
+            bw.write(data);
+            bw.flush();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,9 +31,11 @@ public class StreamHandler {
     }
 
     public static boolean streamWrite(OutputStream out,byte[] bytes){
+        BufferedOutputStream bos = null;
         try {
-            out.write(bytes);
-            out.flush();
+            bos = new BufferedOutputStream(out);
+            bos.write(bytes);
+            bos.flush();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,17 +44,20 @@ public class StreamHandler {
     }
 
     public static void streamRead(InputStream in,byte[] bytes,int start,int end){
+        BufferedInputStream bis = null;
         try {
-            in.read(bytes,start,end);
+            bis = new BufferedInputStream(in);
+            bis.read(bytes,start,end);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void colseOutputStream(OutputStream out){
+        BufferedOutputStream bos = null;
         if(out != null) {
             try {
-                out.close();
+                bos.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,9 +65,11 @@ public class StreamHandler {
     }
 
     public static void closeInputStream(InputStream in){
+        BufferedInputStream bis = null;
         if(in != null) {
+            bis = new BufferedInputStream(in);
             try {
-                in.close();
+                bis.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,9 +77,11 @@ public class StreamHandler {
     }
 
     public static void closeWriter(Writer writer){
+        BufferedWriter bw = null;
         if(writer != null) {
+            bw = new BufferedWriter(writer);
             try {
-                writer.close();
+                bw.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,9 +89,11 @@ public class StreamHandler {
     }
 
     public static void closeReader(Reader reader){
+        BufferedReader br = null;
         if(reader != null){
+            br = new BufferedReader(reader);
             try {
-                reader.close();
+                br.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
