@@ -1,0 +1,224 @@
+2017-08-22 04:53:00CookieSpec selected: default
+  org.apache.http.client.protocol.RequestAddCookies.process(RequestAddCookies.java:122)
+2017-08-22 04:53:00Auth cache not set in the context
+  org.apache.http.client.protocol.RequestAuthCache.process(RequestAuthCache.java:76)
+2017-08-22 04:53:00Connection request: [route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.requestConnection(PoolingHttpClientConnectionManager.java:249)
+2017-08-22 04:53:00Connection leased: [id: 0][route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.leaseConnection(PoolingHttpClientConnectionManager.java:282)
+2017-08-22 04:53:00Opening connection {}->http://127.0.0.1:8080
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:234)
+2017-08-22 04:53:00Connecting to /127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:131)
+2017-08-22 04:53:00Connection established 127.0.0.1:48348<->127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:138)
+2017-08-22 04:53:00Executing request POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:255)
+2017-08-22 04:53:00Target auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:260)
+2017-08-22 04:53:00Proxy auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:266)
+2017-08-22 04:53:00http-outgoing-0 >> POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:135)
+2017-08-22 04:53:00http-outgoing-0 >> Content-type: application/json
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> Content-Length: 327
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> Host: 127.0.0.1:8080
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> Connection: Keep-Alive
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> Accept-Encoding: gzip,deflate
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:00http-outgoing-0 >> "POST /ServletUpload HTTP/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "Content-type: application/json[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "Content-Length: 327[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "Host: 127.0.0.1:8080[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "{[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "  "deviceType":"code",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "  "appId":"0",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "  "app":"import power[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "if  power.getTime()<100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "    power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "    if  power.getTime()>50 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        power.left()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "    elif  power.getTime()>100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        power.right()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "    else :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        while True :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        power.>200()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "        power.right()",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "  "info":"null"[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 >> "}"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 04:53:00http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 << "Content-Length: 1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 << "Date: Mon, 21 Aug 2017 20:53:00 GMT[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 << "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:00http-outgoing-0 << "1"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 04:53:00http-outgoing-0 << HTTP/1.1 200 OK
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:124)
+2017-08-22 04:53:00http-outgoing-0 << Server: Apache-Coyote/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:00http-outgoing-0 << Content-Length: 1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:00http-outgoing-0 << Date: Mon, 21 Aug 2017 20:53:00 GMT
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:00Connection can be kept alive indefinitely
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:284)
+2017-08-22 04:53:00Connection [id: 0][route: {}->http://127.0.0.1:8080] can be kept alive indefinitely
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:314)
+2017-08-22 04:53:00Connection released: [id: 0][route: {}->http://127.0.0.1:8080][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:320)
+2017-08-22 04:53:57CookieSpec selected: default
+  org.apache.http.client.protocol.RequestAddCookies.process(RequestAddCookies.java:122)
+2017-08-22 04:53:57Auth cache not set in the context
+  org.apache.http.client.protocol.RequestAuthCache.process(RequestAuthCache.java:76)
+2017-08-22 04:53:57Connection request: [route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.requestConnection(PoolingHttpClientConnectionManager.java:249)
+2017-08-22 04:53:57Connection leased: [id: 1][route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.leaseConnection(PoolingHttpClientConnectionManager.java:282)
+2017-08-22 04:53:57Opening connection {}->http://127.0.0.1:8080
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:234)
+2017-08-22 04:53:57Connecting to /127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:131)
+2017-08-22 04:53:57Connection established 127.0.0.1:48364<->127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:138)
+2017-08-22 04:53:57Executing request POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:255)
+2017-08-22 04:53:57Target auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:260)
+2017-08-22 04:53:57Proxy auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:266)
+2017-08-22 04:53:57http-outgoing-1 >> POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:135)
+2017-08-22 04:53:57http-outgoing-1 >> Content-type: application/json
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> Content-Length: 327
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> Host: 127.0.0.1:8080
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> Connection: Keep-Alive
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> Accept-Encoding: gzip,deflate
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 04:53:57http-outgoing-1 >> "POST /ServletUpload HTTP/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "Content-type: application/json[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "Content-Length: 327[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "Host: 127.0.0.1:8080[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "Connection: Keep-Alive[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "{[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "  "deviceType":"code",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "  "appId":"1",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "  "app":"import power[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "if  power.getTime()<100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "    power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "    if  power.getTime()>50 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        power.left()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "    elif  power.getTime()>100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        power.right()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "    else :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        while True :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        power.>200()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "        power.right()",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "  "info":"null"[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 >> "}"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 04:53:57http-outgoing-1 << "HTTP/1.1 200 OK[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 << "Server: Apache-Coyote/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 << "Content-Length: 1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 << "Date: Mon, 21 Aug 2017 20:53:57 GMT[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 << "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 04:53:57http-outgoing-1 << "1"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 04:53:57http-outgoing-1 << HTTP/1.1 200 OK
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:124)
+2017-08-22 04:53:57http-outgoing-1 << Server: Apache-Coyote/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:57http-outgoing-1 << Content-Length: 1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:57http-outgoing-1 << Date: Mon, 21 Aug 2017 20:53:57 GMT
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 04:53:57Connection can be kept alive indefinitely
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:284)
+2017-08-22 04:53:57Connection [id: 1][route: {}->http://127.0.0.1:8080] can be kept alive indefinitely
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:314)
+2017-08-22 04:53:57Connection released: [id: 1][route: {}->http://127.0.0.1:8080][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:320)

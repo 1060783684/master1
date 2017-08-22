@@ -1,0 +1,184 @@
+2017-08-22 05:02:30Using Log4J as the default logging framework
+  io.netty.util.internal.logging.InternalLoggerFactory.newDefaultFactory(InternalLoggerFactory.java:59)
+2017-08-22 05:02:30-Dio.netty.eventLoopThreads: 8
+  io.netty.channel.MultithreadEventLoopGroup.<clinit>(MultithreadEventLoopGroup.java:41)
+2017-08-22 05:02:30java.nio.Buffer.address: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:75)
+2017-08-22 05:02:30sun.misc.Unsafe.theUnsafe: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:83)
+2017-08-22 05:02:30sun.misc.Unsafe.copyMemory: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:92)
+2017-08-22 05:02:30java.nio.Bits.unaligned: true
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:132)
+2017-08-22 05:02:30Java version: 7
+  io.netty.util.internal.PlatformDependent.javaVersion0(PlatformDependent.java:583)
+2017-08-22 05:02:30-Dio.netty.noUnsafe: false
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:590)
+2017-08-22 05:02:30sun.misc.Unsafe: available
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:617)
+2017-08-22 05:02:30-Dio.netty.noJavassist: false
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:700)
+2017-08-22 05:02:30Javassist: unavailable
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:713)
+2017-08-22 05:02:30You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:714)
+2017-08-22 05:02:30-Dio.netty.tmpdir: /tmp (java.io.tmpdir)
+  io.netty.util.internal.PlatformDependent.tmpdir0(PlatformDependent.java:732)
+2017-08-22 05:02:30-Dio.netty.bitMode: 64 (sun.arch.data.model)
+  io.netty.util.internal.PlatformDependent.bitMode0(PlatformDependent.java:811)
+2017-08-22 05:02:30-Dio.netty.noPreferDirect: false
+  io.netty.util.internal.PlatformDependent.<clinit>(PlatformDependent.java:87)
+2017-08-22 05:02:30-Dio.netty.noKeySetOptimization: false
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:87)
+2017-08-22 05:02:30-Dio.netty.selectorAutoRebuildThreshold: 512
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:88)
+2017-08-22 05:02:30-Dio.netty.processId: 31445 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:90)
+2017-08-22 05:02:30-Dio.netty.machineId: 00:50:56:ff:fe:c0:00:08 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:110)
+2017-08-22 05:02:30-Dio.netty.initialSeedUniquifier: 0xc85e0cfeb224e39b (took 9 ms)
+  io.netty.util.internal.ThreadLocalRandom.newSeed(ThreadLocalRandom.java:199)
+2017-08-22 05:02:31-Dio.netty.allocator.numHeapArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:98)
+2017-08-22 05:02:31-Dio.netty.allocator.numDirectArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:99)
+2017-08-22 05:02:31-Dio.netty.allocator.pageSize: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:101)
+2017-08-22 05:02:31-Dio.netty.allocator.maxOrder: 11
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:106)
+2017-08-22 05:02:31-Dio.netty.allocator.chunkSize: 16777216
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:110)
+2017-08-22 05:02:31-Dio.netty.allocator.tinyCacheSize: 512
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:111)
+2017-08-22 05:02:31-Dio.netty.allocator.smallCacheSize: 256
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:112)
+2017-08-22 05:02:31-Dio.netty.allocator.normalCacheSize: 64
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:113)
+2017-08-22 05:02:31-Dio.netty.allocator.maxCachedBufferCapacity: 32768
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:114)
+2017-08-22 05:02:31-Dio.netty.allocator.cacheTrimInterval: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:115)
+2017-08-22 05:02:31-Dio.netty.allocator.type: pooled
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:66)
+2017-08-22 05:02:31-Dio.netty.threadLocalDirectBufferSize: 65536
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:75)
+2017-08-22 05:02:31Loopback interface: lo (lo, 0:0:0:0:0:0:0:1%1)
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:203)
+2017-08-22 05:02:31/proc/sys/net/core/somaxconn: 128
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:241)
+2017-08-22 05:02:38-Dio.netty.leakDetectionLevel: simple
+  io.netty.util.ResourceLeakDetector.<clinit>(ResourceLeakDetector.java:79)
+2017-08-22 05:02:47-Dio.netty.recycler.maxCapacity: 262144
+  io.netty.util.Recycler.<clinit>(Recycler.java:56)
+2017-08-22 05:02:47CookieSpec selected: default
+  org.apache.http.client.protocol.RequestAddCookies.process(RequestAddCookies.java:122)
+2017-08-22 05:02:47Auth cache not set in the context
+  org.apache.http.client.protocol.RequestAuthCache.process(RequestAuthCache.java:76)
+2017-08-22 05:02:47Connection request: [route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.requestConnection(PoolingHttpClientConnectionManager.java:249)
+2017-08-22 05:02:47Connection leased: [id: 0][route: {}->http://127.0.0.1:8080][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.leaseConnection(PoolingHttpClientConnectionManager.java:282)
+2017-08-22 05:02:47Opening connection {}->http://127.0.0.1:8080
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:234)
+2017-08-22 05:02:47Connecting to /127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:131)
+2017-08-22 05:02:47Connection established 127.0.0.1:49188<->127.0.0.1:8080
+  org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:138)
+2017-08-22 05:02:47Executing request POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:255)
+2017-08-22 05:02:47Target auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:260)
+2017-08-22 05:02:47Proxy auth state: UNCHALLENGED
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:266)
+2017-08-22 05:02:47http-outgoing-0 >> POST /ServletUpload HTTP/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:135)
+2017-08-22 05:02:47http-outgoing-0 >> Content-type: application/json
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> Content-Length: 327
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> Host: 127.0.0.1:8080
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> Connection: Keep-Alive
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> Accept-Encoding: gzip,deflate
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onRequestSubmitted(LoggingManagedHttpClientConnection.java:138)
+2017-08-22 05:02:47http-outgoing-0 >> "POST /ServletUpload HTTP/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "Content-type: application/json[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "Content-Length: 327[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "Host: 127.0.0.1:8080[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.1 (Java/1.7.0_80)[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "{[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "  "deviceType":"code",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "  "appId":"4",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "  "app":"import power[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "if  power.getTime()<100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "    power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "    if  power.getTime()>50 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        power.left()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "    elif  power.getTime()>100 :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        power.right()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "    else :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        power.rigth()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        while True :[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        power.>200()[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "        power.right()",[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "  "info":"null"[\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 >> "}"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 05:02:47http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 << "Server: Apache-Coyote/1.1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 << "Content-Length: 1[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 << "Date: Mon, 21 Aug 2017 21:02:47 GMT[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 << "[\r][\n]"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:72)
+2017-08-22 05:02:47http-outgoing-0 << "1"
+  org.apache.http.impl.conn.Wire.wire(Wire.java:86)
+2017-08-22 05:02:47http-outgoing-0 << HTTP/1.1 200 OK
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:124)
+2017-08-22 05:02:47http-outgoing-0 << Server: Apache-Coyote/1.1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 05:02:47http-outgoing-0 << Content-Length: 1
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 05:02:47http-outgoing-0 << Date: Mon, 21 Aug 2017 21:02:47 GMT
+  org.apache.http.impl.conn.LoggingManagedHttpClientConnection.onResponseReceived(LoggingManagedHttpClientConnection.java:127)
+2017-08-22 05:02:47Connection can be kept alive indefinitely
+  org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:284)
+2017-08-22 05:02:47Connection [id: 0][route: {}->http://127.0.0.1:8080] can be kept alive indefinitely
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:314)
+2017-08-22 05:02:47Connection released: [id: 0][route: {}->http://127.0.0.1:8080][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+  org.apache.http.impl.conn.PoolingHttpClientConnectionManager.releaseConnection(PoolingHttpClientConnectionManager.java:320)
