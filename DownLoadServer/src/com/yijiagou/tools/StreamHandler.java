@@ -1,6 +1,8 @@
 package com.yijiagou.tools;
 
 import java.io.*;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 /**
  * Created by wangwei on 17-8-20.
@@ -25,7 +27,9 @@ public class StreamHandler {
             String data = br.readLine();
             return data;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        }catch (Exception e){
+            System.out.println(e);
         }
         return null;
     }

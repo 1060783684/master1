@@ -5,6 +5,7 @@ import com.yijiagou.tools.StreamHandler;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.Map;
 
 /**
@@ -28,7 +29,7 @@ public class PingPongTask implements Runnable {
             Socket socket = map.get(id);
             if (socket != null) {
                 try {
-                    socket.setSoTimeout(1000);
+                    socket.setSoTimeout(10000);
                     Writer out = new OutputStreamWriter(socket.getOutputStream());
                     Reader in = new InputStreamReader(socket.getInputStream());
                     StreamHandler.streamWrite(out, "0110|pin");
@@ -45,13 +46,26 @@ public class PingPongTask implements Runnable {
                     }
                 } catch (IOException e) {
                     j++;
+
+                    //-------------关闭socket---------------
+                    try {
+                        socket.close();
+                    } catch (IOException e1) {
+                        System.out.println(e1);
+                    }
                     this.map.put(id, null);
+                    //-------------关闭socket---------------
+
                     System.out.println(id+"状态：断开");
+
+                    //---------------睡眠------------------
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
+                    //---------------睡眠------------------
+
                     e.printStackTrace();
                 }
             }else {

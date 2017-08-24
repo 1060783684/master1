@@ -28,33 +28,46 @@ public class JudgeTask implements Runnable {
         this.sessionMap = sessionMap;
     }
 
-    public void homeDispose(String id, Socket socket) {
+    public void homeDispose(String id, Socket socket){
         //记录登录的冰箱
         this.map.put(id, socket);
         timepool.scheduleAtFixedRate(new PingPongTask(id, this.map), 1, 1, TimeUnit.MINUTES);
-//        timepool.scheduleAtFixedRate(new PingPongTask(id,this.map), 1, 5, TimeUnit.MINUTES);
     }
 
-    public boolean commandToHome(String id,String info){//
+    public boolean commandToHome(String id,String info){
         int count = 0;
+        Socket hsocket = null;
         while (count < 6) {
-            Socket hsocket = this.map.get(id);
-            try {
-                Writer writer = new OutputStreamWriter(hsocket.getOutputStream());
-                Reader reader = new InputStreamReader(hsocket.getInputStream());
+            hsocket = this.map.get(id.trim());
+            System.out.println(id);
+            if(hsocket != null) {
+                try {
+                    Writer writer = new OutputStreamWriter(hsocket.getOutputStream());
+                    Reader reader = new InputStreamReader(hsocket.getInputStream());
 
-                StreamHandler.streamWrite(writer, info);
-                String data = StreamHandler.streamRead(reader);
-                if(data != null) {
-                    String infos[] = data.split("|");
-                    if (infos[0].equals("0111") && infos.equals("ok")) {//有可能家居接受的包错误,则重新发送
-                        return true;//成功只有一个可能
+                    StreamHandler.streamWrite(writer, info);
+                    String data = StreamHandler.streamRead(reader);
+                    if (data != null) {
+                        String infos[] = data.split("\\|");
+                        if (infos[0].equals("0111") && infos[1].equals("ok")) {//有可能家居接受的包错误,则重新发送
+                            System.out.println(data);
+                            return true;//成功只有一个可能
+                        }
                     }
+                    count++;
+                } catch (IOException e) {
+                    count++;
+                    e.printStackTrace();
                 }
+            }else {
                 count++;
+            }
+        }
+        if(hsocket != null){//成功了就在前面返回了
+            try {
+                hsocket.close();
             } catch (IOException e) {
-                count++;
-                e.printStackTrace();
+                System.out.println(e);
             }
         }
         return false;
@@ -68,6 +81,7 @@ public class JudgeTask implements Runnable {
             out = new OutputStreamWriter(socket.getOutputStream());
             in = new InputStreamReader(socket.getInputStream());
             String conninfo = StreamHandler.streamRead(in);//第一次收到的数据
+            System.out.println(conninfo);
             if(conninfo != null) {
                 String[] infos = conninfo.split("\\|");//将数据拆分用于判断
                 if (infos[0].equals("1111")) {//与家电的链接,与家电建立长链接
@@ -77,7 +91,7 @@ public class JudgeTask implements Runnable {
                     } else {
                         int number = Integer.parseInt(infos[1]);
                         if (infos[2].getBytes().length != number) {
-                            req = "1111|err";
+                            req = "1111|err\n";
                         }
                     }
                     boolean succe = StreamHandler.streamWrite(out, req);
@@ -111,26 +125,29 @@ public class JudgeTask implements Runnable {
                     String aid = infos[5];//appID
 
                     if (ilen != number) {//错误消息
-                        StreamHandler.streamWrite(out, "0000|err");
+                        StreamHandler.streamWrite(out, "0000|err\n");
                         StreamHandler.closeWriter(out);
                         StreamHandler.closeReader(in);
                         return;
                     }
 
-                    data = "0000";
+                    data = "0000|";
                     String path = type + "/" + aid + ".py";
                     int pathLen = path.length();
 
                     String hinfo = "0111|lod|" + pathLen + "|" + path;
                     for (int i = 0; i < ids.length; i++) {
-                        if (commandToHome(ids[i], hinfo)) {
+                        boolean judge = commandToHome(ids[i], hinfo+"$");
+                        if (judge) {
                             data += "1";
                             continue;
                         }
                         data += "0";
                     }
 
-                    boolean succe = StreamHandler.streamWrite(out, data);
+                    System.out.println(data+"\n");
+
+                    boolean succe = StreamHandler.streamWrite(out, data+"\n");
                     if (!succe)
                         sessionMap.put(sessionId, data);
                     StreamHandler.closeReader(in);
