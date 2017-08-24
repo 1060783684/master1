@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yijiagou.pojo.JsonKeyword;
 import com.yijiagou.pojo.UrlAppinfo;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerAppender;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.log4j.Logger;
@@ -17,7 +18,7 @@ import java.util.*;
 /**
  * Created by zgl on 17-8-11.
  */
-public class ShowAppStoreHandler extends ChannelHandlerAppender {
+public class ShowAppStoreHandler extends ChannelHandlerAdapter {
     private SJedisPool sJedisPool;
     private static Logger logger =Logger.getLogger(ShowAppStoreHandler.class.getName());
     public ShowAppStoreHandler(SJedisPool sJedisPool){
@@ -32,7 +33,7 @@ public class ShowAppStoreHandler extends ChannelHandlerAppender {
             JSONArray jsonArray = jedisGeturlinfo(devicetype, Integer.parseInt(page),sJedisPool);
             ctx.writeAndFlush(jsonArray.toString());
         } else {
-            ctx.fireChannelRead(ctx);
+            ctx.fireChannelRead(msg);
         }
     }
 

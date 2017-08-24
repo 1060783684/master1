@@ -65,7 +65,7 @@ public class UploadHandler extends ChannelHandlerAdapter {
         try {
             JSONArray code = jsonObject.getJSONArray(JsonKeyword.CODE);
             String info = jsonObject.getString(JsonKeyword.INFO);
-            String type = jsonObject.getString(JsonKeyword.TYPE);
+            String type = jsonObject.getString(JsonKeyword.DEVICETYPE);
             Step step = new Step(0);
             StringBuffer codes = new StringBuffer();
             codes.append("import power\n");
@@ -161,6 +161,7 @@ public class UploadHandler extends ChannelHandlerAdapter {
                     block.append(statement);
                     block.append(" "+TRUE+" :");
                     step.addStep();
+                    block.append(this.getBlock(step,code,retract0));
                 } else if(statement.equals(ELSE)){
                     block.append("\n");
                     block.append(retract);

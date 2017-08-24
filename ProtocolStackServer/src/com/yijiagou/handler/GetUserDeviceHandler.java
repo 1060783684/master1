@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yijiagou.pojo.JsonKeyword;
 import com.yijiagou.pojo.UserAndDevice;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerAppender;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.log4j.Logger;
@@ -17,7 +18,7 @@ import java.util.Map;
 /**
  * Created by zgl on 17-8-15.
  */
-public class GetUserDeviceHandler extends ChannelHandlerAppender {
+public class GetUserDeviceHandler extends ChannelHandlerAdapter {
     private static Logger logger = Logger.getLogger(GetUserDeviceHandler.class.getName());
     private SJedisPool sJedisPool;
 

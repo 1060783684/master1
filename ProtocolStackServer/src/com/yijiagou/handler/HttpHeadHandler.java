@@ -22,7 +22,6 @@ public class HttpHeadHandler extends ChannelHandlerAdapter {
 
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws UnsupportedEncodingException {
         String body = (String)msg;
-        System.out.println(body);
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
         response.headers().set(CONTENT_TYPE,"text/html;charset=UTF-8");
         response.headers().set(CONTENT_LENGTH,body.getBytes("UTF-8").length+"");

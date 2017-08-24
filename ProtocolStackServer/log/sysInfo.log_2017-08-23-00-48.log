@@ -1,0 +1,123 @@
+2017-08-23 00:48:15Using Log4J as the default logging framework
+  io.netty.util.internal.logging.InternalLoggerFactory.newDefaultFactory(InternalLoggerFactory.java:59)
+2017-08-23 00:48:15-Dio.netty.eventLoopThreads: 8
+  io.netty.channel.MultithreadEventLoopGroup.<clinit>(MultithreadEventLoopGroup.java:41)
+2017-08-23 00:48:15java.nio.Buffer.address: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:75)
+2017-08-23 00:48:15sun.misc.Unsafe.theUnsafe: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:83)
+2017-08-23 00:48:15sun.misc.Unsafe.copyMemory: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:92)
+2017-08-23 00:48:15java.nio.Bits.unaligned: true
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:132)
+2017-08-23 00:48:15Java version: 7
+  io.netty.util.internal.PlatformDependent.javaVersion0(PlatformDependent.java:583)
+2017-08-23 00:48:15-Dio.netty.noUnsafe: false
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:590)
+2017-08-23 00:48:15sun.misc.Unsafe: available
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:617)
+2017-08-23 00:48:15-Dio.netty.noJavassist: false
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:700)
+2017-08-23 00:48:15Javassist: unavailable
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:713)
+2017-08-23 00:48:15You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:714)
+2017-08-23 00:48:15-Dio.netty.tmpdir: /tmp (java.io.tmpdir)
+  io.netty.util.internal.PlatformDependent.tmpdir0(PlatformDependent.java:732)
+2017-08-23 00:48:15-Dio.netty.bitMode: 64 (sun.arch.data.model)
+  io.netty.util.internal.PlatformDependent.bitMode0(PlatformDependent.java:811)
+2017-08-23 00:48:15-Dio.netty.noPreferDirect: false
+  io.netty.util.internal.PlatformDependent.<clinit>(PlatformDependent.java:87)
+2017-08-23 00:48:15-Dio.netty.noKeySetOptimization: false
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:87)
+2017-08-23 00:48:15-Dio.netty.selectorAutoRebuildThreshold: 512
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:88)
+2017-08-23 00:48:15-Dio.netty.processId: 5458 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:90)
+2017-08-23 00:48:15-Dio.netty.machineId: 00:50:56:ff:fe:c0:00:08 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:110)
+2017-08-23 00:48:15-Dio.netty.initialSeedUniquifier: 0x5347bb5ff2ba9368 (took 9 ms)
+  io.netty.util.internal.ThreadLocalRandom.newSeed(ThreadLocalRandom.java:199)
+2017-08-23 00:48:15-Dio.netty.allocator.numHeapArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:98)
+2017-08-23 00:48:15-Dio.netty.allocator.numDirectArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:99)
+2017-08-23 00:48:15-Dio.netty.allocator.pageSize: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:101)
+2017-08-23 00:48:15-Dio.netty.allocator.maxOrder: 11
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:106)
+2017-08-23 00:48:15-Dio.netty.allocator.chunkSize: 16777216
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:110)
+2017-08-23 00:48:15-Dio.netty.allocator.tinyCacheSize: 512
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:111)
+2017-08-23 00:48:15-Dio.netty.allocator.smallCacheSize: 256
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:112)
+2017-08-23 00:48:15-Dio.netty.allocator.normalCacheSize: 64
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:113)
+2017-08-23 00:48:15-Dio.netty.allocator.maxCachedBufferCapacity: 32768
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:114)
+2017-08-23 00:48:15-Dio.netty.allocator.cacheTrimInterval: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:115)
+2017-08-23 00:48:15-Dio.netty.allocator.type: pooled
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:66)
+2017-08-23 00:48:15-Dio.netty.threadLocalDirectBufferSize: 65536
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:75)
+2017-08-23 00:48:15Loopback interface: lo (lo, 0:0:0:0:0:0:0:1%1)
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:203)
+2017-08-23 00:48:15/proc/sys/net/core/somaxconn: 128
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:241)
+2017-08-23 00:48:21-Dio.netty.leakDetectionLevel: simple
+  io.netty.util.ResourceLeakDetector.<clinit>(ResourceLeakDetector.java:79)
+2017-08-23 00:48:30-Dio.netty.recycler.maxCapacity: 262144
+  io.netty.util.Recycler.<clinit>(Recycler.java:56)
+2017-08-23 00:48:30An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+  io.netty.channel.DefaultChannelPipeline$TailContext.exceptionCaught(DefaultChannelPipeline.java:1139)
+java.lang.NullPointerException
+	at com.yijiagou.handler.DownLoadHandler.channelRead(DownLoadHandler.java:77)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at com.yijiagou.handler.UploadHandler.channelRead(UploadHandler.java:54)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at com.yijiagou.handler.LoginHandler.channelRead(LoginHandler.java:39)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at com.yijiagou.handler.RegisterHandler.channelRead(RegisterHandler.java:46)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at com.yijiagou.handler.HttpContentHandler.channelRead(HttpContentHandler.java:27)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:243)
+	at io.netty.channel.ChannelHandlerInvokerUtil.invokeChannelReadNow(ChannelHandlerInvokerUtil.java:84)
+	at io.netty.channel.DefaultChannelHandlerInvoker.invokeChannelRead(DefaultChannelHandlerInvoker.java:153)
+	at io.netty.channel.PausableChannelEventExecutor.invokeChannelRead(PausableChannelEventExecutor.java:86)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:389)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:956)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:127)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:514)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:471)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:385)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:351)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:116)
+	at io.netty.util.internal.chmv8.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1412)
+	at io.netty.util.internal.chmv8.ForkJoinTask.doExec(ForkJoinTask.java:280)
+	at io.netty.util.internal.chmv8.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:877)
+	at io.netty.util.internal.chmv8.ForkJoinPool.scan(ForkJoinPool.java:1706)
+	at io.netty.util.internal.chmv8.ForkJoinPool.runWorker(ForkJoinPool.java:1661)
+	at io.netty.util.internal.chmv8.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:126)

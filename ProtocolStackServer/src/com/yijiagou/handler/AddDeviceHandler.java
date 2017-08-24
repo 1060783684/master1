@@ -5,6 +5,7 @@ import com.yijiagou.pojo.JsonKeyword;
 import com.yijiagou.pojo.UserAndDevice;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
 import com.yijiagou.tools.jdbctools.ConnPoolUtil;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerAppender;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.log4j.Logger;
@@ -14,7 +15,7 @@ import redis.clients.jedis.Jedis;
 /**
  * Created by zgl on 17-8-15.
  */
-public class AddDeviceHandler extends ChannelHandlerAppender {
+public class AddDeviceHandler extends ChannelHandlerAdapter {
     private SJedisPool sJedisPool;
     private static Logger logger =Logger.getLogger(AddDeviceHandler.class.getName());
     public AddDeviceHandler(SJedisPool sJedisPool){
@@ -39,7 +40,7 @@ public class AddDeviceHandler extends ChannelHandlerAppender {
                 this.insertMysql(sql, userAndDevice);
             }
         } else {
-            ctx.fireChannelRead(ctx);
+            ctx.fireChannelRead(msg);
         }
 
     }

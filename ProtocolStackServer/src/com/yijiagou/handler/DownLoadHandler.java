@@ -55,11 +55,18 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
         JSONObject jsonObject = (JSONObject) msg;
         String type = (String) jsonObject.get(JsonKeyword.TYPE);
         if (type.equals(JsonKeyword.DOWNLOAD)) {
-            System.out.println("xxxxxxxxx");
+
+
+//            System.out.println("xxxxxxxxx");
             String devicetype = (String) jsonObject.get(JsonKeyword.DEVICETYPE);
             JSONArray jsonArray = jsonObject.getJSONArray(JsonKeyword.DEVICE);
+
+            //----------测试-------------
+            System.out.println(jsonArray);
+            //----------测试-------------
+
             String appid = (String) jsonObject.get(JsonKeyword.APPID);
-            String urlhead = "0000\\|";
+            String urlhead = "0000|";
             String deviceids = "";
             JSONObject jsonObject1;
             for (int i = 0; i < jsonArray.size(); i++) {
@@ -67,7 +74,7 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
                 deviceids += jsonObject1.get(JsonKeyword.DEVICEID) + "#";
             }
             String deviceidd = deviceids.substring(0, deviceids.length() - 1);
-            String url = deviceidd + "\\|" + devicetype + "\\|" + appid;
+            String url = deviceidd + "|" + devicetype + "|" + appid;
 
             int urlsize = url.length();
             BufferedWriter bw = null;
@@ -85,7 +92,7 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
                 logger.error(e);
             }
             while (true) {
-                String request = urlhead + sessionid + "\\|" + urlsize + "\\|" + url;
+                String request = urlhead + sessionid + "|" + urlsize + "|" + url+"\n";
                 Socket socket = null;
                 try {
                     socket = new Socket(ip, port);
@@ -95,17 +102,19 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
                     bw.write(request);
                     bw.flush();
                     String response = br.readLine();
-                    if(response=="0000|err"){
+                    if(response.equals("0000|err")){
                         continue;
                     }else{
+                        System.out.println(response);
                         String [] s = response.split("\\|");
-                        StringTokenizer st = new StringTokenizer(s[1]);
-                        String [] ss=new String[st.countTokens()];
+                        String [] ss=s[1].split("");
                         String json="";
-                        for(int i=0;i<ss.length;i++){
+                        for(int i=1;i<ss.length;i++){
+                            System.out.println(ss[i]);
                             json+="[{\"state\":\""+ss[i]+"\"},";
                         }
-                        String jsonArray1=json.substring(0,json.length()-1)+"]";
+                        String jsonArray1=json.substring(0,json.length()-1)+"]\n";
+                        System.out.println(jsonArray1);
                         ctx.writeAndFlush(jsonArray1);
                     }
                     if(response==null){
@@ -129,10 +138,12 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
                         logger.error(e1 + "==>channelRead");
                     }
                     continue;
+                }catch (IndexOutOfBoundsException e){
+                    System.out.println(e);
                 }
             }
         } else {
-            ctx.fireChannelRead(ctx);
+            ctx.fireChannelRead(msg);
         }
 
     }
