@@ -1,9 +1,11 @@
 package com.yijiagou.task;
 
-import com.yijiagou.pojo.DChannel;
+import com.yijiagou.tools.StreamHandler;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.Map;
 
 /**
@@ -12,9 +14,9 @@ import java.util.Map;
 public class PingPongTask implements Runnable {
 
     private String id;
-    private Map<String,DChannel> map;
+    private Map<String,Socket> map;
 
-    public PingPongTask(String id,Map<String,DChannel> map) {
+    public PingPongTask(String id,Map<String,Socket> map) {
         this.id = id;
         this.map = map;
     }
@@ -22,42 +24,57 @@ public class PingPongTask implements Runnable {
     @Override
     public void run() {
         int j = 0;
-        DChannel dChannel = map.get(id);
         lable:
-        while (j <= 2) {
-            try {
-                dChannel.writeAndFlush("0110|pin");
-                dChannel.soTimeout(10000);
-                int i = 0;
-                while (i <= 2) {
-                    String data = dChannel.readline();
-                    System.out.println(data);
-                    String[] datas = data.split("\\|");
-                    if (datas[0].equals("0110") && datas[1].equals("pon")) {
-                        if (!dChannel.isStatus()) {
-                            dChannel.setStatus(true);
-                        }
-                        dChannel.soTimeout(0);
-                        System.out.println("状态：存活");
-                        break lable;
-                    }
-                    i++;
-                }
-            } catch (SocketException e) {
-                //记录错误冰箱断连
+        while (j <= 2) {//可能断开连接
+            Socket socket = map.get(id);
+            if (socket != null) {
                 try {
-                    dChannel.writeAndFlush("0110|pin");
+                    socket.setSoTimeout(10000);
+                    Writer out = new OutputStreamWriter(socket.getOutputStream());
+                    Reader in = new InputStreamReader(socket.getInputStream());
+                    StreamHandler.streamWrite(out, "0110|pin");
+                    int i = 0;
+                    while (i <= 2) {
+                        String data = StreamHandler.streamRead(in);//可能连接超时
+                        String[] datas = data.split("\\|");
+                        if (datas[0].equals("0110") && datas[1].equals("pon")) {
+                            socket.setSoTimeout(0);
+                            System.out.println(id+"状态：存活");
+                            break lable;
+                        }
+                        i++;
+                    }
+                } catch (IOException e) {
                     j++;
-                } catch (IOException e1) {
-                    dChannel.setStatus(false);
-                    j++;
-                    System.out.println("远程io 中断 家电");
 
-                    //记录错误 远程io 中断 冰箱
+                    //-------------关闭socket---------------
+                    try {
+                        socket.close();
+                    } catch (IOException e1) {
+                        System.out.println(e1);
+                    }
+                    this.map.put(id, null);
+                    //-------------关闭socket---------------
+
+                    System.out.println(id+"状态：断开");
+
+                    //---------------睡眠------------------
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                    //---------------睡眠------------------
+
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                //记录错误 远程io 中断 冰箱
+            }else {
+                j++;
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

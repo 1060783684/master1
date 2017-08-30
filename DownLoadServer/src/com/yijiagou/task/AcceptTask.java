@@ -1,7 +1,5 @@
 package com.yijiagou.task;
 
-import com.yijiagou.pojo.DChannel;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,14 +14,16 @@ public class AcceptTask implements Runnable {
     private ServerSocket serverSocket;
     private ExecutorService workerpool;
     private ScheduledExecutorService timepool;
-    private Map<String, DChannel> map;
+    private Map<String, Socket> map;
+    private Map<String,String> sessionMap;
 
     public AcceptTask(ServerSocket serverSocket, ExecutorService workerpool,
-                      ScheduledExecutorService timepool, Map<String, DChannel> map) {
+                      ScheduledExecutorService timepool, Map<String, Socket> map,Map<String,String> sessionMap) {
         this.serverSocket = serverSocket;
         this.workerpool = workerpool;
         this.timepool = timepool;
         this.map = map;
+        this.sessionMap = sessionMap;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AcceptTask implements Runnable {
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                this.workerpool.execute(new JudgeTask(socket, workerpool, timepool, map));
+                this.workerpool.execute(new JudgeTask(socket, workerpool, timepool, map,sessionMap));
             } catch (IOException e) {
                 e.printStackTrace();
             }

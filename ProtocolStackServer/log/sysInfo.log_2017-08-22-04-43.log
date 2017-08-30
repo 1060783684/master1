@@ -1,0 +1,136 @@
+2017-08-22 04:43:07Using Log4J as the default logging framework
+  io.netty.util.internal.logging.InternalLoggerFactory.newDefaultFactory(InternalLoggerFactory.java:59)
+2017-08-22 04:43:07-Dio.netty.eventLoopThreads: 8
+  io.netty.channel.MultithreadEventLoopGroup.<clinit>(MultithreadEventLoopGroup.java:41)
+2017-08-22 04:43:07java.nio.Buffer.address: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:75)
+2017-08-22 04:43:07sun.misc.Unsafe.theUnsafe: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:83)
+2017-08-22 04:43:07sun.misc.Unsafe.copyMemory: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:92)
+2017-08-22 04:43:07java.nio.Bits.unaligned: true
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:132)
+2017-08-22 04:43:07Java version: 7
+  io.netty.util.internal.PlatformDependent.javaVersion0(PlatformDependent.java:583)
+2017-08-22 04:43:07-Dio.netty.noUnsafe: false
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:590)
+2017-08-22 04:43:07sun.misc.Unsafe: available
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:617)
+2017-08-22 04:43:07-Dio.netty.noJavassist: false
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:700)
+2017-08-22 04:43:07Javassist: unavailable
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:713)
+2017-08-22 04:43:07You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:714)
+2017-08-22 04:43:07-Dio.netty.tmpdir: /tmp (java.io.tmpdir)
+  io.netty.util.internal.PlatformDependent.tmpdir0(PlatformDependent.java:732)
+2017-08-22 04:43:07-Dio.netty.bitMode: 64 (sun.arch.data.model)
+  io.netty.util.internal.PlatformDependent.bitMode0(PlatformDependent.java:811)
+2017-08-22 04:43:07-Dio.netty.noPreferDirect: false
+  io.netty.util.internal.PlatformDependent.<clinit>(PlatformDependent.java:87)
+2017-08-22 04:43:07-Dio.netty.noKeySetOptimization: false
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:87)
+2017-08-22 04:43:07-Dio.netty.selectorAutoRebuildThreshold: 512
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:88)
+2017-08-22 04:43:07-Dio.netty.processId: 29872 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:90)
+2017-08-22 04:43:07-Dio.netty.machineId: 00:50:56:ff:fe:c0:00:08 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:110)
+2017-08-22 04:43:07-Dio.netty.initialSeedUniquifier: 0xf71c98d871ca45cb (took 11 ms)
+  io.netty.util.internal.ThreadLocalRandom.newSeed(ThreadLocalRandom.java:199)
+2017-08-22 04:43:07-Dio.netty.allocator.numHeapArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:98)
+2017-08-22 04:43:07-Dio.netty.allocator.numDirectArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:99)
+2017-08-22 04:43:07-Dio.netty.allocator.pageSize: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:101)
+2017-08-22 04:43:07-Dio.netty.allocator.maxOrder: 11
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:106)
+2017-08-22 04:43:07-Dio.netty.allocator.chunkSize: 16777216
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:110)
+2017-08-22 04:43:07-Dio.netty.allocator.tinyCacheSize: 512
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:111)
+2017-08-22 04:43:07-Dio.netty.allocator.smallCacheSize: 256
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:112)
+2017-08-22 04:43:07-Dio.netty.allocator.normalCacheSize: 64
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:113)
+2017-08-22 04:43:07-Dio.netty.allocator.maxCachedBufferCapacity: 32768
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:114)
+2017-08-22 04:43:07-Dio.netty.allocator.cacheTrimInterval: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:115)
+2017-08-22 04:43:07-Dio.netty.allocator.type: pooled
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:66)
+2017-08-22 04:43:07-Dio.netty.threadLocalDirectBufferSize: 65536
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:75)
+2017-08-22 04:43:07Loopback interface: lo (lo, 0:0:0:0:0:0:0:1%1)
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:203)
+2017-08-22 04:43:07/proc/sys/net/core/somaxconn: 128
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:241)
+2017-08-22 04:43:33Using Log4J as the default logging framework
+  io.netty.util.internal.logging.InternalLoggerFactory.newDefaultFactory(InternalLoggerFactory.java:59)
+2017-08-22 04:43:33-Dio.netty.eventLoopThreads: 8
+  io.netty.channel.MultithreadEventLoopGroup.<clinit>(MultithreadEventLoopGroup.java:41)
+2017-08-22 04:43:33java.nio.Buffer.address: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:75)
+2017-08-22 04:43:33sun.misc.Unsafe.theUnsafe: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:83)
+2017-08-22 04:43:33sun.misc.Unsafe.copyMemory: available
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:92)
+2017-08-22 04:43:33java.nio.Bits.unaligned: true
+  io.netty.util.internal.PlatformDependent0.<clinit>(PlatformDependent0.java:132)
+2017-08-22 04:43:33Java version: 7
+  io.netty.util.internal.PlatformDependent.javaVersion0(PlatformDependent.java:583)
+2017-08-22 04:43:33-Dio.netty.noUnsafe: false
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:590)
+2017-08-22 04:43:33sun.misc.Unsafe: available
+  io.netty.util.internal.PlatformDependent.hasUnsafe0(PlatformDependent.java:617)
+2017-08-22 04:43:33-Dio.netty.noJavassist: false
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:700)
+2017-08-22 04:43:33Javassist: unavailable
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:713)
+2017-08-22 04:43:33You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+  io.netty.util.internal.PlatformDependent.hasJavassist0(PlatformDependent.java:714)
+2017-08-22 04:43:33-Dio.netty.tmpdir: /tmp (java.io.tmpdir)
+  io.netty.util.internal.PlatformDependent.tmpdir0(PlatformDependent.java:732)
+2017-08-22 04:43:33-Dio.netty.bitMode: 64 (sun.arch.data.model)
+  io.netty.util.internal.PlatformDependent.bitMode0(PlatformDependent.java:811)
+2017-08-22 04:43:33-Dio.netty.noPreferDirect: false
+  io.netty.util.internal.PlatformDependent.<clinit>(PlatformDependent.java:87)
+2017-08-22 04:43:33-Dio.netty.noKeySetOptimization: false
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:87)
+2017-08-22 04:43:33-Dio.netty.selectorAutoRebuildThreshold: 512
+  io.netty.channel.nio.NioEventLoop.<clinit>(NioEventLoop.java:88)
+2017-08-22 04:43:33-Dio.netty.processId: 29936 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:90)
+2017-08-22 04:43:33-Dio.netty.machineId: 00:50:56:ff:fe:c0:00:08 (auto-detected)
+  io.netty.channel.DefaultChannelId.<clinit>(DefaultChannelId.java:110)
+2017-08-22 04:43:33-Dio.netty.initialSeedUniquifier: 0x657a1214fa62bdcf (took 7 ms)
+  io.netty.util.internal.ThreadLocalRandom.newSeed(ThreadLocalRandom.java:199)
+2017-08-22 04:43:33-Dio.netty.allocator.numHeapArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:98)
+2017-08-22 04:43:33-Dio.netty.allocator.numDirectArenas: 4
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:99)
+2017-08-22 04:43:33-Dio.netty.allocator.pageSize: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:101)
+2017-08-22 04:43:33-Dio.netty.allocator.maxOrder: 11
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:106)
+2017-08-22 04:43:33-Dio.netty.allocator.chunkSize: 16777216
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:110)
+2017-08-22 04:43:33-Dio.netty.allocator.tinyCacheSize: 512
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:111)
+2017-08-22 04:43:33-Dio.netty.allocator.smallCacheSize: 256
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:112)
+2017-08-22 04:43:33-Dio.netty.allocator.normalCacheSize: 64
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:113)
+2017-08-22 04:43:33-Dio.netty.allocator.maxCachedBufferCapacity: 32768
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:114)
+2017-08-22 04:43:33-Dio.netty.allocator.cacheTrimInterval: 8192
+  io.netty.buffer.PooledByteBufAllocator.<clinit>(PooledByteBufAllocator.java:115)
+2017-08-22 04:43:33-Dio.netty.allocator.type: pooled
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:66)
+2017-08-22 04:43:33-Dio.netty.threadLocalDirectBufferSize: 65536
+  io.netty.buffer.ByteBufUtil.<clinit>(ByteBufUtil.java:75)
+2017-08-22 04:43:33Loopback interface: lo (lo, 0:0:0:0:0:0:0:1%1)
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:203)
+2017-08-22 04:43:33/proc/sys/net/core/somaxconn: 128
+  io.netty.util.NetUtil.<clinit>(NetUtil.java:241)
