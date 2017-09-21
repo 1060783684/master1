@@ -1,5 +1,7 @@
 package com.yijiagou.server;
 
+import com.yijiagou.config.Configurator;
+import com.yijiagou.config.Log4JConfig;
 import com.yijiagou.task.AcceptTask;
 
 import java.io.*;
@@ -13,9 +15,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-/**
- * Created by wangwei on 17-7-30.
- */
 public class Server {
     private ServerSocket serverSocket;
     private ExecutorService bosspool;
@@ -24,25 +23,34 @@ public class Server {
     private Map<String, Socket> map;
     private Map<String,String> sessionMap;
 
-    public Server() throws IOException {
+    private Server() {
+
+    }
+
+    private void init() throws Exception {
+        Configurator.init();
+        Log4JConfig.load();
         this.serverSocket = new ServerSocket();
-        this.bosspool = Executors.newFixedThreadPool(8);
-        this.workerpool = Executors.newFixedThreadPool(1024);
-        this.timepool = Executors.newScheduledThreadPool(1024);
+        this.bosspool = Executors.newFixedThreadPool(Configurator.getBosspoolNum());
+        this.workerpool = Executors.newFixedThreadPool(Configurator.getWorkerpoolNum());
+        this.timepool = Executors.newScheduledThreadPool(Configurator.getTimepoolNum());
         this.map = new ConcurrentHashMap<>();
         this.sessionMap = new ConcurrentHashMap<>();
     }
 
-    public void newInstance() {
-
+    public static Server newInstance() throws Exception {
+        Server server = new Server();
+        server.init();
+        return server;
     }
 
-    public Server bind(int port) throws IOException {
-        this.serverSocket.bind(new InetSocketAddress(port));
+    public Server bind(String host,int port) throws IOException {
+        this.serverSocket.bind(new InetSocketAddress(host,port));
         return this;
     }
 
     public void run() {
+        new Thread(new ConsoleListener()).start();
         for (int i = 0; i <= 8; i++)
             this.bosspool.execute(new AcceptTask(serverSocket, workerpool, timepool, map,sessionMap));
     }

@@ -1,74 +1,106 @@
 package com.yijiagou.task;
 
+import com.yijiagou.exception.MessageException;
+import com.yijiagou.message.CommandRequest;
+import com.yijiagou.message.CommandResponse;
+import com.yijiagou.message.Ping;
+import com.yijiagou.message.Pong;
 import com.yijiagou.tools.StreamHandler;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.util.Map;
+import java.util.concurrent.ScheduledExecutorService;
 
-/**
- * Created by wangwei on 17-8-4.
- */
+import static com.yijiagou.message.MessageKeyword.PINGPONG;
+
 public class PingPongTask implements Runnable {
-
     private String id;
     private Map<String,Socket> map;
+    private ScheduledExecutorService thisPool;
+
+    private static Logger logger = Logger.getLogger("PingPong Log");
 
     public PingPongTask(String id,Map<String,Socket> map) {
         this.id = id;
         this.map = map;
+        this.thisPool = thisPool;
     }
 
     @Override
     public void run() {
         int j = 0;
+        boolean succe = false;
+
         lable:
         while (j <= 2) {//可能断开连接
             Socket socket = map.get(id);
             if (socket != null) {
                 try {
-                    socket.setSoTimeout(10000);
                     Writer out = new OutputStreamWriter(socket.getOutputStream());
                     Reader in = new InputStreamReader(socket.getInputStream());
-                    StreamHandler.streamWrite(out, "0110|pin");
+                    succe = StreamHandler.streamWrite(out,new Ping().toString());
+                    if(!succe){
+                        logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : send error }");
+                        j++;
+                        if(j > 2){
+                            socket.close();
+                            map.put(id,null);
+                        }
+                        Thread.sleep(300);
+                        continue ;
+                    }
                     int i = 0;
                     while (i <= 2) {
                         String data = StreamHandler.streamRead(in);//可能连接超时
-                        String[] datas = data.split("\\|");
-                        if (datas[0].equals("0110") && datas[1].equals("pon")) {
-                            socket.setSoTimeout(0);
-                            System.out.println(id+"状态：存活");
+                        Pong pong = new Pong(data);
+                        if (PINGPONG.equals(pong.getHead())) {
                             break lable;
                         }
+                        logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : recv error }");
                         i++;
+                        if(i > 2){
+                            j++;
+                            if(j > 2){
+                                socket.close();
+                                map.put(id,null);
+                            }
+                            Thread.sleep(300);
+                            continue ;
+                        }
                     }
-                } catch (IOException e) {
+                }catch (MessageException e) {
                     j++;
-
-                    //-------------关闭socket---------------
-                    try {
-                        socket.close();
-                    } catch (IOException e1) {
-                        System.out.println(e1);
+                    logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : " + e + " }");
+                    if(j > 2){
+                        map.put(id,null);
                     }
-                    this.map.put(id, null);
-                    //-------------关闭socket---------------
-
-                    System.out.println(id+"状态：断开");
-
-                    //---------------睡眠------------------
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : " + e + " }");
+                    j++;
+                    if(j > 2){
+                        try {
+                            socket.close();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        map.put(id,null);
+                    }
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
-                    //---------------睡眠------------------
-
+                    continue ;
+                } catch (InterruptedException e) {
+                    logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : " + e + " }");
                     e.printStackTrace();
                 }
-            }else {
+            }else {//socket为null,连接不存在或断开
+                logger.error("PingPong error:{ DeviceId : " + id + " , errorInfo : socket not found}");
                 j++;
                 try {
                     Thread.sleep(300);
@@ -76,6 +108,7 @@ public class PingPongTask implements Runnable {
                     e.printStackTrace();
                 }
             }
+            logger.info("PingPong Message:{ DeviceId : " + id + " , succeed : " +succe+ "}");
         }
     }
 

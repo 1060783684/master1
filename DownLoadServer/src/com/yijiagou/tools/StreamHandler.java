@@ -1,5 +1,7 @@
 package com.yijiagou.tools;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -8,6 +10,7 @@ import java.net.SocketTimeoutException;
  * Created by wangwei on 17-8-20.
  */
 public class StreamHandler {
+
     public static boolean streamWrite(Writer writer,String data){
         BufferedWriter bw = null;
         try {
@@ -16,7 +19,7 @@ public class StreamHandler {
             bw.flush();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         return false;
     }
@@ -27,9 +30,9 @@ public class StreamHandler {
             String data = br.readLine();
             return data;
         } catch (IOException e) {
-            System.out.println(e);
+
         }catch (Exception e){
-            System.out.println(e);
+
         }
         return null;
     }
@@ -42,7 +45,7 @@ public class StreamHandler {
             bos.flush();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         return false;
     }
@@ -53,7 +56,7 @@ public class StreamHandler {
             bis = new BufferedInputStream(in);
             bis.read(bytes,start,end);
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -63,7 +66,6 @@ public class StreamHandler {
             try {
                 bos.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -75,7 +77,6 @@ public class StreamHandler {
             try {
                 bis.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -87,7 +88,6 @@ public class StreamHandler {
             try {
                 bw.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -99,7 +99,6 @@ public class StreamHandler {
             try {
                 br.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
