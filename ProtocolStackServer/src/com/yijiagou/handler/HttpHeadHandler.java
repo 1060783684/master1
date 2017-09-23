@@ -18,7 +18,7 @@ import static io.netty.handler.codec.stomp.StompHeaders.CONTENT_TYPE;
  * Created by wangwei on 17-8-3.
  */
 public class HttpHeadHandler extends ChannelHandlerAdapter {
-    private static Logger logger = Logger.getLogger(GetUserDeviceHandler.class.getName());
+    private static Logger logger = Logger.getLogger(HttpHeadHandler.class.getName());
 
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws UnsupportedEncodingException {
         String body = (String)msg;

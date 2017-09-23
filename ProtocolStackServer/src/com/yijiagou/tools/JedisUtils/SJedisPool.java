@@ -9,9 +9,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created by wangwei on 17-8-17.
- */
+
 public class SJedisPool {
     String host;
     int port;

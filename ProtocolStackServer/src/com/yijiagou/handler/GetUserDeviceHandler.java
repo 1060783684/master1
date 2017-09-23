@@ -18,6 +18,7 @@ import java.util.Map;
 /**
  * Created by zgl on 17-8-15.
  */
+
 public class GetUserDeviceHandler extends ChannelHandlerAdapter {
     private static Logger logger = Logger.getLogger(GetUserDeviceHandler.class.getName());
     private SJedisPool sJedisPool;
@@ -33,14 +34,15 @@ public class GetUserDeviceHandler extends ChannelHandlerAdapter {
         if (actiontype.equals(JsonKeyword.GETDEVICE)) {
             String uname = (String) jsonObject.get(JsonKeyword.USERNAME);
             String devicetype = (String) jsonObject.get(JsonKeyword.DEVICETYPE);
-            JSONArray jsonArray = this.getUserdevices(uname, devicetype, sJedisPool);
-            ctx.writeAndFlush(jsonArray);
+            JSONArray jsonArray = this.getUserdevices(uname, devicetype);
+            logger.info(uname+"GetUserDevice:channelRead===>"+jsonArray.toString());
+            ctx.writeAndFlush(jsonArray.toString());
         } else {
             ctx.fireChannelRead(msg);
         }
     }
 
-    private JSONArray getUserdevices(String uname, String devicetype, SJedisPool sJedisPool) {
+    private JSONArray getUserdevices(String uname, String devicetype) {
         Jedis jedis = null;
         JSONArray jsonArray = new JSONArray();
         String json = null;
@@ -50,31 +52,36 @@ public class GetUserDeviceHandler extends ChannelHandlerAdapter {
         while (true) {
             try {
                 device = jedis.hgetAll(uname);
+                sJedisPool.putbackConnection(jedis);
                 break;
             } catch (JedisConnectionException e) {
-                logger.error(e + "===>getUserdevices");
+                logger.warn(e+uname+ "===>getUserdevices");
                 if (count++ >= 2) {
+                    logger.error(uname+"===>redis暂时无法提供服务");
+                    sJedisPool.putbackConnection(jedis);
                     return null;
-                }else {
+                } else {
                     sJedisPool.repairConnection(jedis);
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e1) {
-                        e1.printStackTrace();
+                        logger.error(e1+"===>getUserdevices");
                     }
                     continue;
                 }
             }
         }
-        for (String str : device.keySet()) {
-            if (device.get(str).equals(devicetype)) {
-                UserAndDevice userAndDevice = new UserAndDevice(str);
-                json = JSON.toJSONString(userAndDevice);
-                jsonArray.add(json);
+        if (device != null) {
+            for (String str : device.keySet()) {
+                if (device.get(str).equals(devicetype)) {
+                    UserAndDevice userAndDevice = new UserAndDevice(str);
+                    json = JSON.toJSONString(userAndDevice);
+                    jsonArray.add(json);
+                }
             }
         }
-
+        logger.info(uname+"===>返回家电集合："+jsonArray);
         return jsonArray;
-
     }
+
 }

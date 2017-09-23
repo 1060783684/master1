@@ -1,5 +1,7 @@
 package com.yijiagou.server;
 
+import com.yijiagou.config.Configurator;
+import com.yijiagou.config.Log4JConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -7,23 +9,37 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
+import org.apache.log4j.PropertyConfigurator;
 
-/**
- * Created by wangwei on 17-7-28.
- */
+import java.util.Scanner;
+
+
 public class PSServer {
     private int port;
+    private String host;
     private SJedisPool sJedisPool;
 
-    public PSServer(){
-        try {
-            this.sJedisPool = new SJedisPool(200,100,"master",6379);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private PSServer(){
+
     }
 
-    public PSServer bind(int port){
+    private void init() throws Exception {
+        Configurator.init();
+        Log4JConfig.load();
+        Thread listener = new Thread(new ConsoleListener());
+        listener.start();
+        this.sJedisPool = new SJedisPool(Configurator.getJPWorkMaxNum(),Configurator.getJPWorkMinNum(),
+                Configurator.getJPHost(),Configurator.getJPPort());
+    }
+
+    public static PSServer newInstance() throws Exception {
+        PSServer psServer = new PSServer();
+        psServer.init();
+        return psServer;
+    }
+
+    public PSServer bind(String host,int port){
+        this.host = host;
         this.port = port;
         return this;
     }
@@ -36,11 +52,11 @@ public class PSServer {
 
             server.group(bossgroup, workgroup)
                     .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .option(ChannelOption.SO_BACKLOG, 102480)
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .childHandler(new ChannelInitializerImp(sJedisPool));
 
-            ChannelFuture future = server.bind(port).sync();
+            ChannelFuture future = server.bind(host,port).sync();
 
             future.channel().closeFuture().sync();
         }catch (InterruptedException e) {
@@ -49,4 +65,8 @@ public class PSServer {
         }
     }
 
+    public void close(){
+
+    }
 }
+

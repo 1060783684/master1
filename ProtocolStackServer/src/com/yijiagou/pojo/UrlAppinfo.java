@@ -4,27 +4,27 @@ package com.yijiagou.pojo;
  * Created by zgl on 17-8-11.
  */
 public class UrlAppinfo {
-    private String id;
+    private String appid;
     private String info;
 
     public UrlAppinfo() {
     }
 
-    public UrlAppinfo(String id){
-        this.id = id;
+    public UrlAppinfo(String appid){
+        this.appid = appid;
     }
 
-    public UrlAppinfo(String id, String info) {
-        this.id = id;
+    public UrlAppinfo(String appid, String info) {
+        this.appid = appid;
         this.info = info;
     }
 
-    public String getId() {
-        return id;
+    public String getAppid() {
+        return appid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAppid(String appid) {
+        this.appid = appid;
     }
 
     public String getInfo() {

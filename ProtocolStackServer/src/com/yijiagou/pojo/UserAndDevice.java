@@ -1,8 +1,6 @@
 package com.yijiagou.pojo;
 
-/**
- * Created by zgl on 17-8-15.
- */
+
 public class UserAndDevice {
     private String uname;
     private String deviceid;

@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
  * Created by wangwei on 17-7-29.
  */
 public class HttpContentHandler extends ChannelHandlerAdapter {//拆的剩包体
-    private static Logger logger = Logger.getLogger(GetUserDeviceHandler.class.getName());
+    private static Logger logger = Logger.getLogger(HttpContentHandler.class.getName());
 
     public void channelRead(ChannelHandlerContext ctx,Object msg) throws UnsupportedEncodingException {
         FullHttpRequest request = (FullHttpRequest)msg;
@@ -24,6 +24,7 @@ public class HttpContentHandler extends ChannelHandlerAdapter {//拆的剩包体
         String content = new String(bytes,"UTF-8");
         System.out.println(content);
         JSONObject jsonObject = JSON.parseObject(content);
+//        System.out.println(jsonObject);
         ctx.fireChannelRead(jsonObject);
     }
 

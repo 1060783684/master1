@@ -2,7 +2,13 @@ package com.yijiagou.handler;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yijiagou.config.Configurator;
+import com.yijiagou.exception.MessageException;
+import com.yijiagou.message.MessageKeyword;
+import com.yijiagou.message.PSRequest;
+import com.yijiagou.message.PSResponse;
 import com.yijiagou.pojo.JsonKeyword;
+import com.yijiagou.server.PSServer;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -55,69 +61,75 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
         JSONObject jsonObject = (JSONObject) msg;
         String type = (String) jsonObject.get(JsonKeyword.TYPE);
         if (type.equals(JsonKeyword.DOWNLOAD)) {
-
-
-//            System.out.println("xxxxxxxxx");
+            System.out.println("dddddddddddddddddddddddddddddddddd");
             String devicetype = (String) jsonObject.get(JsonKeyword.DEVICETYPE);
             JSONArray jsonArray = jsonObject.getJSONArray(JsonKeyword.DEVICE);
 
-            //----------测试-------------
-            System.out.println(jsonArray);
-            //----------测试-------------
-
+            System.out.println("fffffffffffffffffffffffffffffffff");
             String appid = (String) jsonObject.get(JsonKeyword.APPID);
-            String urlhead = "0000|";
-            String deviceids = "";
             JSONObject jsonObject1;
+            String[] deviceids = new String[jsonArray.size()];
+            System.out.println(jsonArray.size());
+
             for (int i = 0; i < jsonArray.size(); i++) {
                 jsonObject1 = (JSONObject) jsonArray.get(i);
-                deviceids += jsonObject1.get(JsonKeyword.DEVICEID) + "#";
+                deviceids[i] = (String) jsonObject1.get(JsonKeyword.DEVICEID);
+                System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
             }
-            String deviceidd = deviceids.substring(0, deviceids.length() - 1);
-            String url = deviceidd + "|" + devicetype + "|" + appid;
-
-            int urlsize = url.length();
             BufferedWriter bw = null;
             BufferedReader br = null;
-            String ip = "127.0.0.1";
-            int port = 9999;
+            String host = null;
+            int port = 0;
+            try {
+                host = Configurator.getBserverHost();
+                port = Configurator.getBserverPort();
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.error(e + "===>DownLoadHandler:channelRead");
+            }
             int count = 0;
-            //String ip, int port, int initSocket, int maxSocket, int minSocket, int requestSocket
-//            SocketPool socketPool = new SocketPool("192.168.56.101", 2333, 200, 500, 100, 20);
-
             String sessionid = null;
             try {
                 sessionid = randomnums.take();
             } catch (InterruptedException e) {
-                logger.error(e);
+                e.printStackTrace();
+                logger.error(e + "DownLoadHandler:channelRead");
             }
+            PSRequest psRequest = new PSRequest(sessionid, deviceids, devicetype, appid);
             while (true) {
-                String request = urlhead + sessionid + "|" + urlsize + "|" + url+"\n";
+                String request = psRequest.toString() + "\n";
                 Socket socket = null;
                 try {
-                    socket = new Socket(ip, port);
+                    socket = new Socket(host, port);
                     bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                     br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    System.out.println(request);
+//                    System.out.println(request);
+                    logger.info(appid + "===>DownLoadHandler:channelRead" + request);
                     bw.write(request);
                     bw.flush();
                     String response = br.readLine();
-                    if(response.equals("0000|err")){
+                    PSResponse psResponse = null;
+                    try {
+                        psResponse = new PSResponse(response);
+                    } catch (MessageException e) {
+                        e.printStackTrace();
+                    }
+                    logger.info(appid + "===>DownLoadHandler:channelRead" + response);
+                    if (psResponse.getBody().equals(MessageKeyword.ERROR)) {
                         continue;
-                    }else{
-                        System.out.println(response);
-                        String [] s = response.split("\\|");
-                        String [] ss=s[1].split("");
-                        String json="";
-                        for(int i=1;i<ss.length;i++){
+                    } else {
+                        String s = psResponse.getBody();
+                        String[] ss = s.split("");
+                        String json = "[";
+                        for (int i = 1; i < ss.length; i++) {
                             System.out.println(ss[i]);
-                            json+="[{\"state\":\""+ss[i]+"\"},";
+                            json += "{\"statecode\":\"" + ss[i] + "\"},";
                         }
-                        String jsonArray1=json.substring(0,json.length()-1)+"]\n";
-                        System.out.println(jsonArray1);
+                        String jsonArray1 = json.substring(0, json.length() - 1) + "]\n";
+                        logger.info(appid + "===>DownLoadHandler:channelRead" + jsonArray1.toString());
                         ctx.writeAndFlush(jsonArray1);
                     }
-                    if(response==null){
+                    if (response == null) {
                         continue;
                     }
                     try {
@@ -128,17 +140,18 @@ public class DownLoadHandler extends ChannelHandlerAdapter {
 
                     break;
                 } catch (IOException e) {
-                    logger.error(e + "==>channelRead");
+                    logger.warn(e + "==>DownLoadHandler:channelRead");
                     if (count++ > 2) {
+                        logger.error(appid + "暂时无法链接服务器B==>DownLoadHandler:channelRead");
                         break;
                     }
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e1) {
-                        logger.error(e1 + "==>channelRead");
+                        logger.error(e1 + "==>DownLoadHandler:channelRead");
                     }
                     continue;
-                }catch (IndexOutOfBoundsException e){
+                } catch (IndexOutOfBoundsException e) {
                     System.out.println(e);
                 }
             }

@@ -8,9 +8,6 @@ import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import com.yijiagou.tools.JedisUtils.SJedisPool;
 
-/**
- * Created by wangwei on 17-8-19.
- */
 public class ChannelInitializerImp extends ChannelInitializer<NioSocketChannel> {
     private SJedisPool sJedisPool;
 
@@ -30,6 +27,8 @@ public class ChannelInitializerImp extends ChannelInitializer<NioSocketChannel> 
         channel.pipeline().addLast(new DownLoadHandler(sJedisPool));//inbound outbound
         channel.pipeline().addLast(new ShowAppStoreHandler(sJedisPool));//inbound outbound
         channel.pipeline().addLast(new AddDeviceHandler(sJedisPool));
+        channel.pipeline().addLast(new CheckUserNameHandler(sJedisPool));
         channel.pipeline().addLast(new GetUserDeviceHandler(sJedisPool));
+        channel.pipeline().addLast(new MobileCheckUserNameHandler(sJedisPool));
     }
 }

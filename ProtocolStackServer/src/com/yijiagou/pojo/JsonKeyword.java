@@ -1,8 +1,6 @@
 package com.yijiagou.pojo;
 
-/**
- * Created by wangwei on 17-8-20.
- */
+
 public class JsonKeyword {
     public static final String TYPE = "type";
     public static final String CODE = "code";
@@ -22,5 +20,7 @@ public class JsonKeyword {
     public static final String PAGE = "page";
     public static final String DEVICEID = "deviceId";
     public static final String DOWNLOAD = "download";
-
+    public static final String CHECKUSERNAME = "checkUsername";
+    public static final String CHECKCODE = "checkcode";
+    public static final String MOBILECHECKUSERNAME = "mobileCheckUsername";
 }
